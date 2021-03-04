@@ -21,3 +21,9 @@ docker run -i --rm -p 8080:8080 quarkus/employeemanagement-jvm
 ## Testing the APIs
 Use ***jee-quarkus-learning.postman_collection.json*** for testing the APIs
 
+## Initialize test data
+As the H2 database is only configured in-memory, all the data disappears after server startup or deployment.
+
+You can initialize the database with some nice data, by running src/test/java/ch/mobi/ueliloetscher/learning/employeemanagement/DataLoader.main()
+
+
