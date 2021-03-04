@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "bc1b909e-1296-4a3e-9852-179619195566",
+		"name": "jee-quarkus-learning",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee/ping",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllEmployees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer getallusers"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchEmployees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer getallusers"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee?ename=hoa",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					],
+					"query": [
+						{
+							"key": "ename",
+							"value": "hoa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployeeById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployeeById Slow",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer getuserbyid"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee/slow/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"slow",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ename\": \"Tam Tang\",\n    \"salary\": 8000,\n    \"deg\": \"MA\",\n    \"department\": {\n        \"name\": \"NVG\"\n    },\n    \"skills\": [\n        {\n            \"skill\": \"Jasmine\"\n        },\n        {\n            \"skill\": \"Typescript\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addEmployee (BadRequest)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer addUser"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEmployee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer addUser"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"ename\": \"Ironman\",\n    \"salary\": 12000,\n    \"deg\": \"PhD\",\n    \"department\": {\n        \"name\": \"Axon Active\"\n    },\n    \"skills\": [\n        {\n            \"skill\": \"Jasmine\"\n        },\n        {\n            \"skill\": \"Typescript\"\n        },\n        {\n            \"skill\": \"Java\"\n        },\n        {\n            \"skill\": \"JEE\"\n        },\n        {\n            \"skill\": \"EJB\"\n        },\n        {\n            \"skill\": \"JAX-RS\"\n        },\n        {\n            \"skill\": \"JPA\"\n        },\n        {\n            \"skill\": \"CDI\"\n        },\n        {\n            \"skill\": \"BeanValidation\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEmployee",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer deleteuser"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -16,3 +16,6 @@ docker build -f src/main/docker/Dockerfile.jvm -t quarkus/employeemanagement-jvm
 docker run -i --rm -p 8080:8080 quarkus/employeemanagement-jvm
 ```
 
+## Testing the APIs
+Use ***jee-quarkus-learning.postman_collection.json*** for testing the APIs
+
