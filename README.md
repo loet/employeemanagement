@@ -9,6 +9,8 @@ You can run your application in dev mode that enables live coding using:
 
 ## Running the application in a docker container
 
+Required precondition: Installation of Docker: https://docs.docker.com/docker-for-mac/install/
+
 Execute the following commands:
 ```
 ./mvnw package
