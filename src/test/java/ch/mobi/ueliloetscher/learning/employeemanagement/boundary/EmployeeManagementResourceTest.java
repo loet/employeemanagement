@@ -9,13 +9,11 @@ import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.*;
 
 @QuarkusTest
 public class EmployeeManagementResourceTest {
@@ -45,7 +43,7 @@ public class EmployeeManagementResourceTest {
         employee.setSalary(new BigDecimal(1000));
         employee.setDeg("Soso");
         employee.setDepartment(new Department("dep foo"));
-        employee.setSkills(Arrays.asList(new Skill("Play the Guitar"), new Skill("Play the Violin")));
+        employee.setSkills(asList(new Skill("Play the Guitar"), new Skill("Play the Violin")));
 
         ValidatableResponse response = given()
                 .contentType(ContentType.JSON)
