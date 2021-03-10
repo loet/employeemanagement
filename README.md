@@ -7,6 +7,11 @@ You can run your application in dev mode that enables live coding using:
 ./mvnw compile quarkus:dev
 ```
 
+If you want to use a local Postgresql database instead of the in-memory h2, start the server with the profile postgresql (for configuration of Postgresql, see below):
+```
+./mvnw compile quarkus:dev -Dquarkus.profile=postgresql
+````
+
 ## Running the application in a docker container
 
 Required precondition: Installation of Docker: https://docs.docker.com/docker-for-mac/install/
@@ -26,4 +31,10 @@ As the H2 database is only configured in-memory, all the data disappears after s
 
 You can initialize the database with some nice data, by running src/test/java/ch/mobi/ueliloetscher/learning/employeemanagement/DataLoader.main()
 
+## Configuration of Postgresql
+Install Postgresql locally, see: https://postgresapp.com/
 
+Open the postgres database and create database for the employeemanagement:
+```
+create database employeemanagement;
+```
