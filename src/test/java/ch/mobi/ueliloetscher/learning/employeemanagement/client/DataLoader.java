@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class DataLoader {
 
     public static void main(String[] args) throws URISyntaxException {
-        URI apiUri = new URI("http://127.0.0.1:8080");
+        URI apiUri = new URI("http://127.0.0.1:8000");
         EmployeeManagementResource service = RestClientBuilder.newBuilder()
                 .baseUri(apiUri)
                 .build(EmployeeManagementResource.class);
