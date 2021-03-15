@@ -1,6 +1,5 @@
 package ch.mobi.ueliloetscher.learning.employeemanagement.client;
 
-import ch.mobi.ueliloetscher.learning.employeemanagement.boundary.EmployeeManagementResource;
 import ch.mobi.ueliloetscher.learning.employeemanagement.dto.CollectionWrapper;
 import ch.mobi.ueliloetscher.learning.employeemanagement.dto.MessageDTO;
 import ch.mobi.ueliloetscher.learning.employeemanagement.entity.Department;
