@@ -90,9 +90,41 @@
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.4</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-mssql</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>1.10.0</version>
+        <configuration>
+          <schemaVersion>v2</schemaVersion>
+          <subscriptionId>2f6df874-de8e-4c0e-890e-11dda7d2c01a</subscriptionId>
+          <resourceGroup>employeemanagement-1615822812417-rg</resourceGroup>
+          <appName>employeemanagement-1615822812417</appName>
+          <pricingTier>P1v2</pricingTier>
+          <region>westeurope</region>
+          <runtime>
+            <os>Linux</os>
+            <javaVersion>Java 11</javaVersion>
+            <webContainer>Java SE</webContainer>
+          </runtime>
+          <deployment>
+            <resources>
+              <resource>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
@@ -138,6 +170,20 @@
             <javaVersion>Java 11</javaVersion>
             <webContainer>Java SE</webContainer>
           </runtime>
+          <appSettings>
+            <property>
+              <name>PORT</name>
+              <value>8000</value>
+            </property>
+            <property>
+              <name>WEBSITES_PORT</name>
+              <value>8000</value>
+            </property>
+            <property>
+              <name>WEBSITES_CONTAINER_START_TIME_LIMIT</name>
+              <value>600</value>
+            </property>
+          </appSettings>
           <deployment>
             <resources>
               <resource>

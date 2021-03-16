@@ -20,7 +20,7 @@ Execute the following commands:
 ```
 ./mvnw package
 docker build -f src/main/docker/Dockerfile.jvm -t quarkus/employeemanagement-jvm .
-docker run -i --rm -p 8080:8080 quarkus/employeemanagement-jvm
+docker run -i --rm -p 8000:8000 quarkus/employeemanagement-jvm
 ```
 
 ## Testing the APIs
@@ -31,10 +31,17 @@ As the H2 database is only configured in-memory, all the data disappears after s
 
 You can initialize the database with some nice data, by running src/test/java/ch/mobi/ueliloetscher/learning/employeemanagement/DataLoader.main()
 
-## Configuration of Postgresql
+## Configuration of local Postgresql
 Install Postgresql locally, see: https://postgresapp.com/
 
 Open the postgres database and create database for the employeemanagement:
 ```
 create database employeemanagement;
+```
+## Create build for the Azure Cloud
+##### see: https://docs.microsoft.com/en-us/azure/developer/java/eclipse-microprofile/deploy-microprofile-quarkus-java-app-with-maven-plugin
+```
+az login
+mvn clean package -Dquarkus.profile=mssql
+mvn azure-webapp:deploy
 ```

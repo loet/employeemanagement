@@ -7,6 +7,8 @@ import ch.mobi.ueliloetscher.learning.employeemanagement.entity.Employee;
 import ch.mobi.ueliloetscher.learning.employeemanagement.validation.FormatValidationMessages;
 import ch.mobi.ueliloetscher.learning.employeemanagement.validation.MessageWrapper;
 import ch.mobi.ueliloetscher.learning.employeemanagement.validation.ValidationException;
+import io.quarkus.runtime.configuration.ProfileManager;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -15,10 +17,15 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Path("/employee")
 @FormatValidationMessages
 public class EmployeeManagementResource {
+
+    @ConfigProperty(name = "quarkus.datasource.db-kind")
+    String dbKind;
 
     @Inject
     EntityManager em;
@@ -40,6 +47,16 @@ public class EmployeeManagementResource {
     @Transactional(Transactional.TxType.SUPPORTS)
     public Response ping() {
         return Response.ok(new MessageDTO(LocalDateTime.now().toString())).build();
+    }
+
+    @GET()
+    @Path("/config")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getDbKind() {
+        Map<String, String> config = new HashMap<>();
+        config.put("activeProfile", ProfileManager.getActiveProfile());
+        config.put("dbKind", this.dbKind);
+        return Response.ok(config).build();
     }
 
     @GET

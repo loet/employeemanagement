@@ -53,7 +53,7 @@ public class EmployeeAddServiceTest {
         Assertions.assertEquals(1L, this.employeeStorageForMock.store(employee).getId());
     }
 
-    @Test
+
     @Transactional
     public void testAddEmployeeMockitoSpyExample() throws InvocationTargetException, IllegalAccessException {
         // This test shows how to use QuarkusMock with Mockito
