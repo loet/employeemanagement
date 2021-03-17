@@ -9,6 +9,7 @@ import ch.mobi.ueliloetscher.learning.employeemanagement.validation.MessageWrapp
 import ch.mobi.ueliloetscher.learning.employeemanagement.validation.ValidationException;
 import io.quarkus.runtime.configuration.ProfileManager;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -23,6 +24,8 @@ import java.util.Map;
 @Path("/employee")
 @FormatValidationMessages
 public class EmployeeManagementResource {
+
+    private Logger LOGGER = Logger.getLogger(this.getClass().getName().toString());
 
     @ConfigProperty(name = "quarkus.datasource.db-kind")
     String dbKind;
@@ -46,6 +49,8 @@ public class EmployeeManagementResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional(Transactional.TxType.SUPPORTS)
     public Response ping() {
+        LOGGER.debug("ping called");
+
         return Response.ok(new MessageDTO(LocalDateTime.now().toString())).build();
     }
 
