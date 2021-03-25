@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table
 //@NamedQuery(query = "Select e from Employee e where e.ename like :ename ", name="search employees by ename")
-@NamedQuery(query = "Select e from Employee e where e.ename_search like lower(concat('%', :ename,'%')) ", name = "search employees by ename")
+@NamedQuery(query = "Select e from Employee e where e.name_search like lower(concat('%', :ename,'%')) ", name = "search employees by ename")
 public class Employee implements Serializable {
 
 
@@ -20,12 +20,12 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotBlank(message = "ename is required")
-    private String ename;
-    private String ename_search;
+    private String name;
+    private String name_search;
     @NotNull(message = "salary required")
     private BigDecimal salary;
     @NotBlank(message = "deg is required")
-    private String deg;
+    private String degree;
 
     @ManyToOne
     @NotNull(message = "department required")
@@ -35,12 +35,12 @@ public class Employee implements Serializable {
     @NotEmpty(message = "skills required")
     private List<Skill> skills = new ArrayList<>();
 
-    public Employee(Long id, String ename, BigDecimal salary, String deg) {
+    public Employee(Long id, String name, BigDecimal salary, String degree) {
         super();
         this.id = id;
-        this.ename = ename;
+        this.name = name;
         this.salary = salary;
-        this.deg = deg;
+        this.degree = degree;
     }
 
     public Employee() {
@@ -55,20 +55,20 @@ public class Employee implements Serializable {
         this.id = eid;
     }
 
-    public String getEname() {
-        return ename;
+    public String getName() {
+        return name;
     }
 
-    public void setEname(String ename) {
-        this.ename = ename;
+    public void setName(String ename) {
+        this.name = ename;
     }
 
-    public String getEname_search() {
-        return ename_search;
+    public String getName_search() {
+        return name_search;
     }
 
-    public void setEname_search(String ename_search) {
-        this.ename_search = ename_search;
+    public void setName_search(String ename_search) {
+        this.name_search = ename_search;
     }
 
     public BigDecimal getSalary() {
@@ -79,12 +79,12 @@ public class Employee implements Serializable {
         this.salary = salary;
     }
 
-    public String getDeg() {
-        return deg;
+    public String getDegree() {
+        return degree;
     }
 
-    public void setDeg(String deg) {
-        this.deg = deg;
+    public void setDegree(String deg) {
+        this.degree = deg;
     }
 
     public Department getDepartment() {
@@ -105,6 +105,6 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", ename=" + ename + ", salary=" + salary + ", deg=" + deg + "]";
+        return "Employee [id=" + id + ", ename=" + name + ", salary=" + salary + ", deg=" + degree + "]";
     }
 }

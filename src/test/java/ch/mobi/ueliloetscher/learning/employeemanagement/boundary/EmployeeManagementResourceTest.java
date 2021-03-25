@@ -39,9 +39,9 @@ public class EmployeeManagementResourceTest {
     @Test
     public void testAddEmployee() {
         Employee employee = new Employee();
-        employee.setEname("Foo");
+        employee.setName("Foo");
         employee.setSalary(new BigDecimal(1000));
-        employee.setDeg("Soso");
+        employee.setDegree("Soso");
         employee.setDepartment(new Department("dep foo"));
         employee.setSkills(asList(new Skill("Play the Guitar"), new Skill("Play the Violin")));
 

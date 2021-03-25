@@ -45,3 +45,28 @@ az login
 mvn clean package -Dquarkus.profile=mssql
 mvn azure-webapp:deploy
 ```
+
+## Use GraalVM
+### Download
+````
+brew install --cask graalvm/tap/graalvm-ce-java11
+xattr -cr /Library/Java/JavaVirtualMachines/graalvm-ce-java11-21.0.0
+````
+### Set PATH
+````
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-java11-21.0.0/Contents/Home
+export PATH=$PATH:$JAVA_HOME/bin
+````
+### native image
+````
+gu install native-image
+```
+### package native binary
+````
+./mvnw package -Pnative -Dquarkus.profile=postgresql
+````
+### Run
+````
+cd target
+./employeemanagement-1.0.0-SNAPSHOT-runner
+````

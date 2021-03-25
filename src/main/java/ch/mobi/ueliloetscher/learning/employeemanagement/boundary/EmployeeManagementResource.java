@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,9 +70,9 @@ public class EmployeeManagementResource {
     @Transactional(Transactional.TxType.SUPPORTS)
     public Response searchEmployees(@QueryParam("ename") String ename) {
         if (ename != null) {
-            return Response.ok(new CollectionWrapper(this.employeeSearchService.searchEmployees(ename))).build();
+            return Response.ok(new CollectionWrapper<Employee>(this.employeeSearchService.searchEmployees(ename))).build();
         } else {
-            return Response.ok(new CollectionWrapper(this.employeeSearchService.getAllEmployees())).build();
+            return Response.ok(new CollectionWrapper<Employee>(this.employeeSearchService.getAllEmployees())).build();
         }
     }
 
@@ -109,7 +110,15 @@ public class EmployeeManagementResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional(Transactional.TxType.REQUIRED)
     public Response addEmployee(Employee employee) throws ValidationException {
-        return Response.status(Response.Status.CREATED).entity(this.employeeAddService.addEmployee(employee)).build();
+        Employee created = this.employeeAddService.addEmployee(employee);
+        return Response
+                .created(
+                        UriBuilder.fromResource(EmployeeManagementResource.class)
+                                .path(Long.toString(created.getId()))
+                                .build()
+                )
+                .entity(created)
+                .build();
     }
 
     @PUT

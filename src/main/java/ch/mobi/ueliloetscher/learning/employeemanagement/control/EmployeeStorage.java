@@ -23,7 +23,7 @@ public class EmployeeStorage {
 
     public Employee store(Employee employee) {
         // set lowercase name for search statements
-        employee.setEname_search(employee.getEname().toLowerCase());
+        employee.setName_search(employee.getName().toLowerCase());
 
         // handle department
         Department persistentDepartment = this.departmentService.searchDepartment(employee.getDepartment().getName());

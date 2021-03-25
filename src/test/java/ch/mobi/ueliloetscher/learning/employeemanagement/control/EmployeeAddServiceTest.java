@@ -58,9 +58,9 @@ public class EmployeeAddServiceTest {
     public void testAddEmployeeMockitoSpyExample() throws InvocationTargetException, IllegalAccessException {
         // This test shows how to use QuarkusMock with Mockito
         Employee employee = new Employee();
-        employee.setEname("Foo");
+        employee.setName("Foo");
         employee.setSalary(new BigDecimal(1000));
-        employee.setDeg("Soso");
+        employee.setDegree("Soso");
         Department department = new Department("dep foo");
         employee.setDepartment(department);
         employee.setSkills(asList(new Skill("Play the Guitar"), new Skill("Play the Violin")));

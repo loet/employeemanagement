@@ -38,9 +38,9 @@ public class DataLoader {
 
     private static Employee createEmployeeData(String name, String department, Collection<String> skillStrings) {
         Employee newEmployee = new Employee();
-        newEmployee.setEname(name);
+        newEmployee.setName(name);
         newEmployee.setSalary(BigDecimal.valueOf(1000));
-        newEmployee.setDeg("PhD");
+        newEmployee.setDegree("PhD");
         newEmployee.setDepartment(new Department(department));
         List<Skill> skills = skillStrings.stream().map(Skill::new).collect(Collectors.toList());
         newEmployee.setSkills(skills);
