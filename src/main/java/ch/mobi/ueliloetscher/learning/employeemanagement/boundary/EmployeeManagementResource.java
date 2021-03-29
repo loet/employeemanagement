@@ -4,9 +4,7 @@ import ch.mobi.ueliloetscher.learning.employeemanagement.control.*;
 import ch.mobi.ueliloetscher.learning.employeemanagement.dto.CollectionWrapper;
 import ch.mobi.ueliloetscher.learning.employeemanagement.dto.MessageDTO;
 import ch.mobi.ueliloetscher.learning.employeemanagement.entity.Employee;
-import ch.mobi.ueliloetscher.learning.employeemanagement.validation.FormatValidationMessages;
 import ch.mobi.ueliloetscher.learning.employeemanagement.validation.MessageWrapper;
-import ch.mobi.ueliloetscher.learning.employeemanagement.validation.ValidationException;
 import io.quarkus.runtime.configuration.ProfileManager;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
@@ -23,7 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Path("/employee")
-@FormatValidationMessages
 public class EmployeeManagementResource {
 
     private Logger LOGGER = Logger.getLogger(this.getClass().getName().toString());
@@ -109,7 +106,7 @@ public class EmployeeManagementResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional(Transactional.TxType.REQUIRED)
-    public Response addEmployee(Employee employee) throws ValidationException {
+    public Response addEmployee(Employee employee) {
         Employee created = this.employeeAddService.addEmployee(employee);
         return Response
                 .created(

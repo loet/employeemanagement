@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class MessageWrapper implements Serializable {
     private String message;
-    private String property;
+    private String path;
 
     public MessageWrapper() {
 
@@ -12,7 +12,7 @@ public class MessageWrapper implements Serializable {
 
     public MessageWrapper(String message, String propertyPath) {
         this.message = message;
-        this.property = propertyPath;
+        this.path = propertyPath;
     }
 
     public String getMessage() {
@@ -23,15 +23,15 @@ public class MessageWrapper implements Serializable {
         this.message = message;
     }
 
-    public String getProperty() {
-        return property;
+    public String getPath() {
+        return path;
     }
 
-    public void setProperty(String property) {
-        this.property = property;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String toString() {
-        return message + "(property: " + property + ")";
+        return message + "(path: " + path + ")";
     }
 }
